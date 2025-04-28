@@ -21,7 +21,7 @@ export class CustomersComponent {
 
   constructor(
     private storageService: StorageService
-  ){}
+  ){this.loadCustomers}
 
   ngOnInit () {
     this.customers = this.storageService.getItem('cutomers');
@@ -50,6 +50,13 @@ export class CustomersComponent {
   deleteCustomer(id: string) {
     this.customers = this.customers.filter(c => c.id !== id);
     this.storageService.setItem( 'customers', this.customers)
+  }
+
+  loadCustomers() {
+    const stored = localStorage.getItem('customers');
+    if (stored) {
+      this.customers = JSON.parse(stored);
+    }
   }
 
   resetForm() {
