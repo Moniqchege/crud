@@ -1,0 +1,19 @@
+<h2>Customer Management</h2>
+
+<form (ngSubmit)="saveCustomer()">
+  <input type="text" [(ngModel)]="customer.name" name="name" placeholder="Name" required />
+  <input type="email" [(ngModel)]="customer.email" name="email" placeholder="Email" required />
+  <input type="text" [(ngModel)]="customer.phone" name="phone" placeholder="Phone" required />
+  <button type="submit">{{ editMode ? 'Update' : 'Add' }} Customer</button>
+  <button type="button" (click)="resetForm()">Reset</button>
+</form>
+
+<hr>
+
+<ul>
+  <li *ngFor="let c of customers">
+    {{ c.name }} ({{ c.email }}) - {{ c.phone }}
+    <button (click)="editCustomer(c)">Edit</button>
+    <button (click)="deleteCustomer(c.id)">Delete</button>
+  </li>
+</ul>

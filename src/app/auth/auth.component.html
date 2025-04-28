@@ -1,0 +1,23 @@
+<div class="auth-container" [class.register-mode]="!isLoginMode">
+    <div class="form-container">
+      <!-- Login Form -->
+      <form *ngIf="isLoginMode" (ngSubmit)="login()" class="form login-form">
+        <h2>Login</h2>
+        <input type="email" placeholder="Email" [(ngModel)]="loginEmail" name="loginEmail" required />
+        <input type="password" placeholder="Password" [(ngModel)]="loginPassword" name="loginPassword" required />
+        <button type="submit">Login</button>
+        <p>Don't have an account? <a (click)="toggleMode()">Register</a></p>
+      </form>
+  
+      <!-- Register Form -->
+      <form *ngIf="!isLoginMode" (ngSubmit)="register()" class="form register-form">
+        <h2>Register</h2>
+        <input type="email" placeholder="Email" [(ngModel)]="registerEmail" name="registerEmail" required />
+        <input type="password" placeholder="Password" [(ngModel)]="registerPassword" name="registerPassword" required />
+        <input type="password" placeholder="Confirm Password" [(ngModel)]="registerConfirmPassword" name="registerConfirmPassword" required />
+        <button type="submit">Register</button>
+        <p>Already have an account? <a (click)="toggleMode()">Login</a></p>
+      </form>
+    </div>
+  </div>
+  
