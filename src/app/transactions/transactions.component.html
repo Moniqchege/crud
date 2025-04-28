@@ -1,1 +1,29 @@
-<p>transactions works!</p>
+<h2>Transactions</h2>
+
+<form (ngSubmit)="createTransaction()">
+  <label for="atmCardId">Select ATM Card</label>
+  <select [(ngModel)]="transaction.atmCardId" name="atmCardId" required aria-label="Select ATM Card">
+    <option value="">Select ATM Card</option>
+    <option *ngFor="let card of atmCardService.getAtmCards()" [value]="card.id">{{ card.cardNumber }}</option>
+  </select>
+
+  <label for="amount">Amount</label>
+  <input type="number" [(ngModel)]="transaction.amount" name="amount" placeholder="Number" required />
+
+  <label for="type">Transaction Type</label>
+  <select [(ngModel)]="transaction.type" name="type" required aria-label="Trasaction Type">
+    <option value="deposit">Deposit</option>
+    <option value="withdrawal">Withdrawal</option>
+  </select>
+
+  <button type="submit">Submit Transaction</button>
+</form>
+
+<h3>Transactions</h3>
+<ul>
+  <li *ngFor="let txn of transactions">
+    {{ txn.type }} - {{ txn.amount }} - {{ txn.date }}
+    <button (click)="reverseTransaction(txn.id)">Reverse</button>
+    <button (click)="deleteTransaction(txn.id)">Delete</button>
+  </li>
+</ul>

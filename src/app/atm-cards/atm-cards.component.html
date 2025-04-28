@@ -1,1 +1,20 @@
-<p>atm-cards works!</p>
+<h2>ATM Card Mapping</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <label for="accountId">Select Account</label>
+  <select [(ngModel)]="atmCard.accountId" name="accountId" required aria-label="Select Account">
+    <option value="">Select Account</option>
+    <option *ngFor="let account of accounts" [value]="account.id">{{ account.name }}</option>
+  </select>
+
+  <label for="cardNumber">Card Number</label>
+  <input type="text" [(ngModel)]="atmCard.cardNumber" name="cardNumber" placeholder="Card Number" required />
+
+  <label for="cardType">Card Type</label>
+  <input type="text" [(ngModel)]="atmCard.cardType" name="cardType" placeholder="Card Type" required />
+
+  <label for="expiryDate">Expiry Date</label>
+  <input type="text" [(ngModel)]="atmCard.expiryDate" name="expiryDate" placeholder="Expiry Date" required />
+
+  <button type="submit">Save ATM Card</button>
+</form>
